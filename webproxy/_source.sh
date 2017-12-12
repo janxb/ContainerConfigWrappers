@@ -27,14 +27,14 @@ function https_wildcard {
 function https_generic {
  HOSTNAME=$1
  TARGET=$2
- _https $HOSTNAME $HOSTNAME $DEFAULT_SSL_HOST $TARGET
+ _https $HOSTNAME $HOSTNAME $SSL_DEFAULT_HOST $TARGET
 }
 
 function https_generic_overwrite {
  HOSTNAME=$1
  OVERWRITEHOST=$2
  TARGET=$3
- _https $HOSTNAME $OVERWRITEHOST $DEFAULT_SSL_HOST $TARGET
+ _https $HOSTNAME $OVERWRITEHOST $SSL_DEFAULT_HOST $TARGET
 }
 
 function https_dedicated {

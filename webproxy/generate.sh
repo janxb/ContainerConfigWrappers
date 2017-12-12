@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . $DIR/_source.sh
 
 CONFIG=/etc/nginx/sites-enabled/webproxy-generated
-DEFAULT_SSL_HOST=root.radiohitwave.com
-SSL_CONFIG_DIR=/root/.acme.sh/
+SSL_DEFAULT_HOST=root.radiohitwave.com
+SSL_CONFIG_DIR=/root/.acme.sh
 
 clear_file $CONFIG
 
