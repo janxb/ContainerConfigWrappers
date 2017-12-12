@@ -5,7 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . $DIR/_source.sh
 
 PHPEXTENSIONS="bcmath gd gmp json mbstring mysql sqlite3 xml zip"
-CONFIG=/etc/nginx/sites-enabled/generated
+CONFIG=/etc/nginx/sites-enabled/webhosting-generated
 clear_config
 
 vhost_start html DEFAULT
