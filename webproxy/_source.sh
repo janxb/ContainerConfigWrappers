@@ -80,10 +80,9 @@ SSLHOSTFILE=$3
 TARGET=$4
 cat >> $CONFIG <<EOL
 server {
- listen 443;
- listen [::]:443;
+ listen 443 ssl http2;
+ listen [::]:443 ssl http2;
  server_name $HOSTNAME;
- ssl on;
  ssl_certificate $SSL_CONFIG_DIR/$SSLHOSTFILE/fullchain.cer;
  ssl_certificate_key $SSL_CONFIG_DIR/$SSLHOSTFILE/$SSLHOSTFILE.key;
  location / {
