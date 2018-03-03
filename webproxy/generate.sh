@@ -19,12 +19,6 @@ https_generic ajenti.radiohitwave.com https://ajenti.lxd:8000
 http_to_https seafile.radiohitwave.com
 https_generic seafile.radiohitwave.com https://seafile.lxd
 
-#http_to_https landscape.radiohitwave.com
-#https_generic landscape.radiohitwave.com https://landscape.lxd
-
-#http_to_https cockpit.radiohitwave.com
-#https_generic cockpit.radiohitwave.com https://cockpit.lxd:9090
-
 http_to_https webssh.radiohitwave.com
 https_generic webssh.radiohitwave.com https://webssh.lxd:4200
 
@@ -33,9 +27,6 @@ https_generic streamripper.radiohitwave.com http://streamripper.lxd:8000
 
 http_to_https etherpad.radiohitwave.com
 https_generic etherpad.radiohitwave.com http://etherpad.lxd:9001
-
-http_to_https teambutler.radiohitwave.com
-https_generic_overwrite teambutler.radiohitwave.com radiohitwave.teambutler.net https://radiohitwave.teambutler.net
 
 http_to_https mailcow.radiohitwave.com
 
