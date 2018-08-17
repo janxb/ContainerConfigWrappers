@@ -13,11 +13,23 @@ clear_file $CONFIG
 http_to_https _
 https_wildcard https://ajenti.lxd
 
+http_to_https stream-public.radiohitwave.com
+https_generic stream-public.radiohitwave.com http://icecast-public.lxd:8000
+
+http_to_https stream-internal.radiohitwave.com
+https_generic stream-internal.radiohitwave.com http://icecast-internal.lxd:8000
+
+http_to_https monitorix.radiohitwave.com
+https_generic monitorix.radiohitwave.com http://monitorix.lxd:8080
+
 http_to_https ajenti.radiohitwave.com
 https_generic ajenti.radiohitwave.com https://ajenti.lxd:8000
 
 http_to_https seafile.radiohitwave.com
 https_generic seafile.radiohitwave.com https://seafile.lxd
+
+http_to_https landscape.radiohitwave.com
+https_generic landscape.radiohitwave.com https://landscape.lxd
 
 http_to_https webssh.radiohitwave.com
 https_generic webssh.radiohitwave.com https://webssh.lxd:4200
