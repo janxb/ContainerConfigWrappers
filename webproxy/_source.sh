@@ -88,6 +88,10 @@ server {
  location / {
   resolver $RESOLVER ipv6=off;
   proxy_pass $TARGET\$request_uri;
+  proxy_read_timeout 300s;
+  proxy_send_timeout 300s;
+  proxy_buffering off;
+  client_max_body_size 1g;
   set_real_ip_from 103.21.244.0/22;
   set_real_ip_from 103.22.200.0/22;
   set_real_ip_from 103.31.4.0/22;
