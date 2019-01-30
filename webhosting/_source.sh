@@ -28,6 +28,7 @@ server {
 EOF
 }
 
+# certificate_path - key_path
 function ssl {
 cat <<EOF >> $CONFIG
  listen *:443 ssl;
@@ -72,6 +73,7 @@ EOF
 service php$1-fpm restart
 }
 
+# php_version - php_extension_names
 function php_extension {
  PREFIX="php$1-"
  apt-get install -qq -y $(echo "${@:2}" | tr ' ' '\n' | sed -e "s/^/$PREFIX/")
