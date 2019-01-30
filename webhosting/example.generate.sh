@@ -9,11 +9,12 @@ CONFIG=/etc/nginx/sites-enabled/webhosting-generated
 clear_config
 
 vhost_start DEFAULT html
-	php 7.2 "upload_max_filesize=10M;post_max_size=200M;date.timezone=Europe/Berlin;"
 vhost_end
 
 vhost_start example.com html2/sub
-	php 7.1 "post_max_size=200M;date.timezone=Europe/Berlin;"
+	php 7.3 "date.timezone=Europe/Berlin;"
+	ssl /etc/ssl/certs/nginx-selfsigned.crt /etc/ssl/private/nginx-selfsigned.key
+	nginx_config custom-part
 vhost_end
 
 nginx -t

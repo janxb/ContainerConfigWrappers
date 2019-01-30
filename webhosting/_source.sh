@@ -8,6 +8,7 @@ EOF
 }
 
 C_LOGNAME=""
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # domain - vhost_name
 function vhost_start {
@@ -26,6 +27,11 @@ server {
  try_files \$uri \$uri/ /index.php\$is_args\$args;
  client_max_body_size 1g;
 EOF
+}
+
+# config_part_filename
+function nginx_config {
+cat $DIR/parts/$1.conf >> $CONFIG
 }
 
 # certificate_path - key_path
