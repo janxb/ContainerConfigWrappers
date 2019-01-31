@@ -7,7 +7,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # username - password - directory
 function ftp {
 dpkg -s pure-ftpd &>/dev/null
-(echo $2; echo $2) | pure-pw useradd $1 -u www-data -g www-data -d /var/www/$3
+(echo $2; echo $2) | pure-pw useradd $1 -u www-data -g www-data -d /var/www/$3 >/dev/null
 }
 
 # domain - document_directory
