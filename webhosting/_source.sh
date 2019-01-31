@@ -4,6 +4,12 @@ set -e
 C_LOGNAME=""
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# username - password - directory
+function ftp {
+dpkg -s pure-ftpd &>/dev/null
+(echo $2; echo $2) | pure-pw useradd $1 -u www-data -g www-data -d /var/www/$3
+}
+
 # domain - document_directory
 function vhost_start {
 C_LOGNAME=$(echo $1 | sed 's/[^0-9A-Za-z]*//g' | awk '{print tolower($0)}');
@@ -95,11 +101,16 @@ function php_extension {
 }
 
 function php_reload {
-service php*-fpm restart
+service php*-fpm reload
+}
+
+function ftp_reload {
+pure-pw mkdb
 }
 
 function clear_config {
  truncate -s0 $CONFIG
+ truncate -s0 /etc/pure-ftpd/pureftpd.passwd
  rm /etc/php/*/fpm/pool.d/*.conf 2>/dev/null || true
  for folder in /etc/php/*/fpm ; do
   VERSION=$(echo $folder | cut -d/ -f4)

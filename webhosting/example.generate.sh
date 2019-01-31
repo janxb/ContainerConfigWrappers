@@ -19,5 +19,6 @@ vhost_end
 
 nginx -t
 php_reload
+ftp_reload
 service nginx reload
 echo "nginx: configuration reloaded!"
