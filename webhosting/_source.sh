@@ -54,6 +54,8 @@ cat <<EOF >> $CONFIG
   fastcgi_pass unix:/var/run/php/php-fpm-pool-$C_LOGNAME.sock;
   fastcgi_param PHP_VALUE "$PHPVALUE";
   fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+  fastcgi_buffers 16 16k;
+  fastcgi_buffer_size 32k;
   include fastcgi.conf;
  }
 EOF
