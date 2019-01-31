@@ -1,4 +1,4 @@
-#!/bin/bash
+##!/bin/bash
 set -e
 
 C_LOGNAME=""
@@ -61,7 +61,6 @@ EOF
 
 # php_version - php_config
 function php {
-php_extension $1 "fpm $PHPEXTENSIONS"
 php_fpm_pool $1 $C_LOGNAME
 PHPVALUE=$(sed "s/;/;\\\n/g" <<<"$2")
 cat <<EOF >> $CONFIG
@@ -99,6 +98,7 @@ EOF
 
 # php_version - php_extension_names
 function php_extension {
+ echo "installing PHP $1 extensions - $2"
  PREFIX="php$1-"
  apt-get install -qq -y $(echo "${@:2}" | tr ' ' '\n' | sed -e "s/^/$PREFIX/")
 }
@@ -117,8 +117,12 @@ function clear_config {
  truncate -s0 $CONFIG
  truncate -s0 /etc/pure-ftpd/pureftpd.passwd
  rm /etc/php/*/fpm/pool.d/*.conf 2>/dev/null || true
+}
+
+function prepare_php_config {
  for folder in /etc/php/*/fpm ; do
   VERSION=$(echo $folder | cut -d/ -f4)
   php_fpm_pool $VERSION $VERSION-default
+  php_extension $VERSION "fpm $PHPEXTENSIONS"
  done
 }
