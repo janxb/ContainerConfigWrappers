@@ -63,6 +63,7 @@ cat <<EOF >> $CONFIG
   fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
   fastcgi_buffers 16 16k;
   fastcgi_buffer_size 32k;
+  fastcgi_read_timeout 600;
   include fastcgi.conf;
  }
 EOF
