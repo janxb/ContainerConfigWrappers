@@ -1,12 +1,6 @@
 #!/bin/bash
 set -e
 
-function vhost_end {
-cat <<EOF >> $CONFIG
-}
-EOF
-}
-
 C_LOGNAME=""
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -26,6 +20,12 @@ server {
  index index.php index.html;
  try_files \$uri \$uri/ /index.php\$is_args\$args;
  client_max_body_size 1g;
+EOF
+}
+
+function vhost_end {
+cat <<EOF >> $CONFIG
+}
 EOF
 }
 
