@@ -18,5 +18,6 @@ vhost_start example.com html2/sub
 vhost_end
 
 nginx -t
+php_reload
 service nginx reload
 echo "nginx: configuration reloaded!"

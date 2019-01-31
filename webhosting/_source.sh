@@ -86,13 +86,16 @@ pm.start_servers = 2
 pm.min_spare_servers = 1
 pm.max_spare_servers = 3
 EOF
-service php$1-fpm restart
 }
 
 # php_version - php_extension_names
 function php_extension {
  PREFIX="php$1-"
  apt-get install -qq -y $(echo "${@:2}" | tr ' ' '\n' | sed -e "s/^/$PREFIX/")
+}
+
+function php_reload {
+service php*-fpm restart
 }
 
 function clear_config {
