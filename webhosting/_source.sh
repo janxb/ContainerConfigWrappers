@@ -98,5 +98,8 @@ function php_extension {
 function clear_config {
  truncate -s0 $CONFIG
  rm /etc/php/*/fpm/pool.d/*.conf 2>/dev/null || true
- for folder in /etc/php/* ; do php_fpm_pool ${folder##*/} ${folder##*/}-default; done;
+ for folder in /etc/php/*/fpm ; do
+  VERSION=$(echo $folder | cut -d/ -f4)
+  php_fpm_pool $VERSION $VERSION-default
+ done
 }
