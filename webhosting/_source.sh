@@ -23,6 +23,13 @@ server {
 EOF
 }
 
+# target_domain
+function redirect {
+cat <<EOF >> $CONFIG
+return 301 \$scheme://$1\$request_uri;
+EOF
+}
+
 function vhost_end {
 cat <<EOF >> $CONFIG
 }
