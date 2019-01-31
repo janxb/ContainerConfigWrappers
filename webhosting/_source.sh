@@ -6,12 +6,14 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # username - password - directory
 function ftp {
+echo "creating FTP user $1"
 dpkg -s pure-ftpd &>/dev/null
 (echo $2; echo $2) | pure-pw useradd $1 -u www-data -g www-data -d /var/www/$3 >/dev/null
 }
 
 # domain - document_directory
 function vhost_start {
+echo "creating nginx vhost $1"
 C_LOGNAME=$(echo $1 | sed 's/[^0-9A-Za-z]*//g' | awk '{print tolower($0)}');
 WEBDIR=/var/www/$2/;
 if [ ! -d "$WEBDIR" ]; then echo "web dir $WEBDIR not existing!"; exit 1; fi;
@@ -77,6 +79,7 @@ EOF
 
 # php_version - fpm_pool_name
 function php_fpm_pool {
+echo "creating PHP-FPM pool $2"
 POOLNAME=$(echo $2 | sed 's/[^0-9A-Za-z]*//g');
 truncate -s0 /etc/php/$1/fpm/pool.d/$POOLNAME.conf &>/dev/null || true
 cat <<EOF >> /etc/php/$1/fpm/pool.d/$POOLNAME.conf
@@ -101,10 +104,12 @@ function php_extension {
 }
 
 function php_reload {
+echo "reloading PHP-FPM"
 service php*-fpm reload
 }
 
 function ftp_reload {
+echo "reloading Pure-FTPd"
 pure-pw mkdb
 }
 
