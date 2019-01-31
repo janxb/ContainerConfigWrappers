@@ -44,8 +44,8 @@ cat $DIR/parts/$1.conf >> $CONFIG
 # certificate_path - key_path
 function ssl {
 cat <<EOF >> $CONFIG
- listen *:443 ssl;
- listen [::]:443 ssl;
+ listen *:443 ssl http2;
+ listen [::]:443 ssl http2;
  ssl_certificate $1;
  ssl_certificate_key $2;
 EOF
