@@ -4,7 +4,7 @@ set -e
 C_LOGNAME=""
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# domain - vhost_name
+# domain - document_directory
 function vhost_start {
 C_LOGNAME=$(echo $1 | sed 's/[^0-9A-Za-z]*//g' | awk '{print tolower($0)}');
 WEBDIR=/var/www/$2/;
