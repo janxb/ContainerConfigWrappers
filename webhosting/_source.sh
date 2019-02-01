@@ -113,6 +113,18 @@ echo "reloading Pure-FTPd"
 pure-pw mkdb
 }
 
+function nginx_reload {
+echo "reloading NGINX"
+service nginx reload
+}
+
+function reload {
+nginx_reload
+php_reload
+ftp_reload
+echo "DONE."
+}
+
 function clear_config {
  truncate -s0 $CONFIG
  truncate -s0 /etc/pure-ftpd/pureftpd.passwd

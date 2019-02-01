@@ -18,8 +18,4 @@ vhost_start example.com html2/sub
 	nginx_config custom-part
 vhost_end
 
-nginx -t
-php_reload
-ftp_reload
-service nginx reload
-echo "nginx: configuration reloaded!"
+reload
