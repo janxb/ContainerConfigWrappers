@@ -62,10 +62,9 @@ function https_redirect {
  TARGET=$2
 cat >> $CONFIG <<EOL
 server {
- listen 443;
- listen [::]:443;
+ listen 443 ssl;
+ listen [::]:443 ssl;
  server_name $HOSTNAME;
- ssl on;
  ssl_certificate $SSL_CONFIG_DIR/$SSL_DEFAULT_HOST/fullchain.cer;
  ssl_certificate_key $SSL_CONFIG_DIR/$SSL_DEFAULT_HOST/$SSL_DEFAULT_HOST.key;
  return 302 $TARGET;
@@ -88,9 +87,21 @@ server {
  location / {
   resolver $RESOLVER ipv6=off;
   proxy_pass $TARGET\$request_uri;
+  proxy_http_version 1.1;
   proxy_read_timeout 300s;
   proxy_send_timeout 300s;
   proxy_buffering off;
+  proxy_ignore_client_abort on;
+  proxy_set_header Host $OVERWRITEHOST;
+  proxy_set_header X-Real-IP \$remote_addr;
+  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-Proto \$scheme;
+  proxy_set_header Accept-Encoding "";
+  proxy_set_header Authorization \$http_authorization;
+  proxy_set_header Upgrade \$http_upgrade;
+  proxy_set_header Connection "upgrade";
+  proxy_pass_header Authorization;
+  proxy_pass_header Server;
   client_max_body_size 1g;
   set_real_ip_from 103.21.244.0/22;
   set_real_ip_from 103.22.200.0/22;
@@ -115,12 +126,6 @@ server {
   set_real_ip_from 2c0f:f248::/32;
   set_real_ip_from 2a06:98c0::/29;
   real_ip_header CF-Connecting-IP;
-  proxy_set_header Host $OVERWRITEHOST;
-  proxy_set_header X-Real-IP \$remote_addr;
-  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-  proxy_set_header Accept-Encoding "";
-  proxy_set_header Authorization \$http_authorization;
-  proxy_pass_header Authorization;
  }
 }
 EOL
