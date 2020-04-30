@@ -89,10 +89,10 @@ listen.group = www-data
 user = www-data
 group= www-data
 pm = dynamic
-pm.max_children = 5
+pm.max_children = 100
 pm.start_servers = 2
-pm.min_spare_servers = 1
-pm.max_spare_servers = 3
+pm.min_spare_servers = 2
+pm.max_spare_servers = 10
 EOF
 }
 
