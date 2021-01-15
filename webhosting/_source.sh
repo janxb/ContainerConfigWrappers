@@ -103,6 +103,14 @@ function php_extension {
  apt-get install -qq -y $(echo "${@:2}" | tr ' ' '\n' | sed -e "s/^/$PREFIX/")
 }
 
+# config_key - config_value
+function php_global_config {
+ echo "setting global PHP config $1=$2"
+ for filename in /etc/php/*/fpm/conf.d; do
+  crudini --set $filename/99-custom.ini '' $1 $2
+ done
+}
+
 function php_reload {
 echo "reloading PHP-FPM"
 service php*-fpm reload
@@ -128,7 +136,8 @@ echo "DONE."
 function clear_config {
  truncate -s0 $CONFIG
  truncate -s0 /etc/pure-ftpd/pureftpd.passwd
- rm /etc/php/*/fpm/pool.d/*.conf 2>/dev/null || true
+ rm /etc/php/*/fpm/pool.d/*.conf         2>/dev/null || true
+ rm /etc/php/*/fpm/conf.d/99-custom.ini  2>/dev/null || true
 }
 
 function prepare_php_config {
@@ -137,4 +146,8 @@ function prepare_php_config {
   php_fpm_pool $VERSION $VERSION-default
   php_extension $VERSION "fpm $PHPEXTENSIONS"
  done
+}
+
+function install_packages {
+ apt install pure-ftpd crudini nginx -y
 }
