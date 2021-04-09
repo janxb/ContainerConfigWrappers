@@ -88,8 +88,8 @@ server {
   resolver $RESOLVER ipv6=off;
   proxy_pass $TARGET\$request_uri;
   proxy_http_version 1.1;
-  proxy_read_timeout 300s;
-  proxy_send_timeout 300s;
+  proxy_read_timeout 1h;
+  proxy_send_timeout 1h;
   proxy_buffering off;
   proxy_set_header Host $OVERWRITEHOST;
   proxy_set_header X-Real-IP \$remote_addr;
@@ -124,6 +124,7 @@ server {
   set_real_ip_from 2405:8100::/32;
   set_real_ip_from 2c0f:f248::/32;
   set_real_ip_from 2a06:98c0::/29;
+  client_body_buffer_size 10m;
   real_ip_header CF-Connecting-IP;
  }
 }
