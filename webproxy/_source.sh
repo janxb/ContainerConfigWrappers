@@ -98,6 +98,7 @@ server {
   proxy_http_version 1.1;
   proxy_read_timeout 1h;
   proxy_send_timeout 1h;
+  proxy_request_buffering off;
   proxy_buffering off;
   proxy_set_header Host $OVERWRITEHOST;
   proxy_set_header X-Real-IP \$remote_addr;
