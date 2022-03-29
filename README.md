@@ -1,5 +1,9 @@
-
 # ContainerConfigWrappers
+
+**IMPORTANT:** This script collection is deprecated and all components are not in active use anymore. Use at your own risk! Replacements: [NginxProxyManager](https://github.com/NginxProxyManager/nginx-proxy-manager) and [KeyHelp web hosting panel](https://www.keyhelp.de/).
+
+---
+
 The scripts found in this repository are used on multiple machines and virtualized containers, for providing proxy and hosting services. Feel free to check them out or provide feedback if you can think of any improvements.
 
 ## webhosting
